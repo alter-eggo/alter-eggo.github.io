@@ -10,7 +10,42 @@
     <script>
       const button = document.querySelector(".btn");
 
+      button.addEventListener("click", () => {
+        copyToClipboard("скопированный текст");
+      });
       console.log("button", button);
+
+      function copyToClipboard(textToCopy) {
+        /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+        const textArea = document.createElement("textArea");
+
+        function createTextArea(text) {
+          textArea.readOnly = true;
+          textArea.contentEditable = true;
+          textArea.value = text;
+          document.body.appendChild(textArea);
+        }
+
+        function selectText() {
+          const range = document.createRange();
+          range.selectNodeContents(textArea);
+
+          const selection = window.getSelection();
+          selection?.removeAllRanges();
+          selection?.addRange(range);
+
+          textArea.setSelectionRange(0, 999999);
+        }
+
+        function copyTo() {
+          document.execCommand("copy");
+          document.body.removeChild(textArea);
+        }
+
+        createTextArea(textToCopy);
+        selectText();
+        copyTo();
+      }
     </script>
   </body>
 </html>
