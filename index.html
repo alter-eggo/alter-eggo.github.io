@@ -10,14 +10,15 @@
     <script>
       const button = document.querySelector(".btn");
 
-      button.addEventListener("click", () => {
-        await copyToClipboard("скопированный текст");
+      button.addEventListener("click", async () => {
+        await promisefunc("скопированный текст");
       });
-      console.log("button", button);
 
-      async function copyToClipboard(textToCopy) {
-        console.log("button", textToCopy);
-
+      async function promisefunc() {
+        console.log("test promise");
+        copyToClipboard();
+      }
+      function copyToClipboard(textToCopy) {
         const textArea = document.createElement("textArea");
 
         function createTextArea(text) {
