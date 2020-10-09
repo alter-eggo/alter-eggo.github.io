@@ -11,14 +11,13 @@
       const button = document.querySelector(".btn");
 
       button.addEventListener("click", () => {
-        copyToClipboard("скопированный текст");
+        await copyToClipboard("скопированный текст");
       });
       console.log("button", button);
 
-      function copyToClipboard(textToCopy) {
+      async function copyToClipboard(textToCopy) {
         console.log("button", textToCopy);
 
-        /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
         const textArea = document.createElement("textArea");
 
         function createTextArea(text) {
